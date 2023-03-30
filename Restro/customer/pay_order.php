@@ -105,8 +105,8 @@ require_once('partials/_head.php');
                     <input type="text" name="pay_id" readonly value="<?php echo $payid;?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Payment Code</label><small class="text-danger"> Type 10 Digits Alpha-Code If Payment Method Is In Cash</small>
-                    <input type="text" limit="11" name="pay_code" placeholder="<?php echo $mpesaCode; ?>" class="form-control" value="">
+                    <label>Payment Code</label><small class="text-danger"> Type 10 Digits Alpha-Code</small>
+                    <input type="text" limit="11" name="pay_code" placeholder="" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
