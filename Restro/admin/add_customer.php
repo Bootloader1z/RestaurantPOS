@@ -3,7 +3,7 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 include('config/code-generator.php');
-//Visit codeastro.com for more projects
+
 check_login();
 //Add Customer
 if (isset($_POST['addCustomer'])) {
@@ -31,7 +31,7 @@ if (isset($_POST['addCustomer'])) {
     }
   }
 }
-//Visit codeastro.com for more projects
+
 require_once('partials/_head.php');
 ?>
 

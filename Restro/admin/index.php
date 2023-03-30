@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
   $_SESSION['admin_id'] = $admin_id;
   if ($rs) {
     //if its sucessfull
-	//Visit codeastro.com for more projects
+	
     header("location:dashboard.php");
   } else {
     $err = "Incorrect Authentication Credentials ";
