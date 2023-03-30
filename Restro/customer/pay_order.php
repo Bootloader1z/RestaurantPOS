@@ -51,7 +51,7 @@ if (isset($_POST['pay'])) {
           $upStmt->execute();
           //declare a varible which will be passed to alert function
           if ($upStmt && $postStmt) {
-              $success = "Paid" && header("refresh:1; url=payments_reports.php");
+              $success = "Paid" && header("refresh:1; url=payments_reports");
           } else {
               $err = "Please Try Again Or Try Later";
           }

@@ -25,7 +25,7 @@ if (isset($_POST['addCustomer'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Customer Added" && header("refresh:1; url=customes.php");
+      $success = "Customer Added" && header("refresh:1; url=customes");
     } else {
       $err = "Please Try Again Or Try Later";
     }

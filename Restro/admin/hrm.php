@@ -12,7 +12,7 @@ if (isset($_GET['delete'])) {
   $stmt->execute();
   $stmt->close();
   if ($stmt) {
-    $success = "Deleted" && header("refresh:1; url=hrm.php");
+    $success = "Deleted" && header("refresh:1; url=hrm");
   } else {
     $err = "Try Again Later";
   }
@@ -46,7 +46,7 @@ require_once('partials/_head.php');
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <a href="add_staff.php" class="btn btn-outline-success"><i class="fas fa-user-plus"></i>Add New Staff</a>
+              <a href="add_staff" class="btn btn-outline-success"><i class="fas fa-user-plus"></i>Add New Staff</a>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
@@ -71,14 +71,14 @@ require_once('partials/_head.php');
                       <td><?php echo $staff->staff_name; ?></td>
                       <td><?php echo $staff->staff_email; ?></td>
                       <td>
-                        <a href="hrm.php?delete=<?php echo $staff->staff_id; ?>">
+                        <a href="hrm?delete=<?php echo $staff->staff_id; ?>">
                           <button class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i>
                             Delete
                           </button>
                         </a>
 
-                        <a href="update_staff.php?update=<?php echo $staff->staff_id; ?>">
+                        <a href="update_staff?update=<?php echo $staff->staff_id; ?>">
                           <button class="btn btn-sm btn-primary">
                             <i class="fas fa-user-edit"></i>
                             Update

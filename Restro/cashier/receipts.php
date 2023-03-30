@@ -67,7 +67,7 @@ require_once('partials/_head.php');
                                             <td>$ <?php echo $total; ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                                             <td>
-                                                <a target="_blank" href="print_receipt.php?order_code=<?php echo $order->order_code; ?>">
+                                                <a target="_blank" href="print_receipt?order_code=<?php echo $order->order_code; ?>">
                                                     <button class="btn btn-sm btn-primary">
                                                         <i class="fas fa-print"></i>
                                                         Print Receipt

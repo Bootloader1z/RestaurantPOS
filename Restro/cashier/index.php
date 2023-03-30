@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
   $_SESSION['staff_id'] = $staff_id;
   if ($rs) {
     //if its sucessfull
-    header("location:dashboard.php");
+    header("location:dashboard");
   } else {
     $err = "Incorrect Authentication Credentials ";
   }
@@ -72,7 +72,7 @@ require_once('partials/_head.php');
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <!-- <a href="../admin/forgot_pwd.php" target="_blank" class="text-light"><small>Forgot password?</small></a> -->
+              <!-- <a href="../admin/forgot_pwd" target="_blank" class="text-light"><small>Forgot password?</small></a> -->
             </div>
           </div>
         </div>

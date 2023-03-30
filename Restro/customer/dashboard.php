@@ -27,7 +27,7 @@ require_once('partials/_analytics.php');
           <!-- Card stats -->
           <div class="row">
             <div class="col-xl-4 col-lg-6">
-              <a href="orders.php">
+              <a href="orders">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
                     <div class="row">
@@ -46,7 +46,7 @@ require_once('partials/_analytics.php');
               </a>
             </div>
             <div class="col-xl-4 col-lg-6">
-              <a href="orders_reports.php">
+              <a href="orders_reports">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
                     <div class="row">
@@ -65,7 +65,7 @@ require_once('partials/_analytics.php');
               </a>
             </div>
             <div class="col-xl-4 col-lg-6">
-              <a href="payments_reports.php">
+              <a href="payments_reports">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
                     <div class="row">
@@ -98,7 +98,7 @@ require_once('partials/_analytics.php');
                   <h3 class="mb-0">Recent Orders</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="orders_reports.php" class="btn btn-sm btn-primary">See all</a>
+                  <a href="orders_reports" class="btn btn-sm btn-primary">See all</a>
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@ require_once('partials/_analytics.php');
                   <h3 class="mb-0">My Recent Payments</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="payments_reports.php" class="btn btn-sm btn-primary">See all</a>
+                  <a href="payments_reports" class="btn btn-sm btn-primary">See all</a>
                 </div>
               </div>
             </div>

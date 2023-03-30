@@ -66,7 +66,7 @@ require_once('partials/_head.php');
                                 <div class="form-group">
                                     <div class="text-left">
                                         <button type="submit" name="login" class="btn btn-primary my-4">Log In</button>
-                                        <a href="create_account.php" class=" btn btn-success pull-right">Create Account</a>
+                                        <a href="create_account" class=" btn btn-success pull-right">Create Account</a>
                                     </div>
                                 </div>
                             </form>
@@ -75,7 +75,7 @@ require_once('partials/_head.php');
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <!-- <a href="../admin/forgot_pwd.php" target="_blank" class="text-light"><small>Forgot password?</small></a> -->
+                            <!-- <a href="../admin/forgot_pwd" target="_blank" class="text-light"><small>Forgot password?</small></a> -->
                         </div>
                     </div>
                 </div>

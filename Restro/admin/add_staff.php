@@ -24,7 +24,7 @@ if (isset($_POST['addStaff'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Staff Added" && header("refresh:1; url=hrm.php");
+      $success = "Staff Added" && header("refresh:1; url=hrm");
     } else {
       $err = "Please Try Again Or Try Later";
     }

@@ -12,7 +12,7 @@ if (isset($_GET['delete'])) {
   $stmt->execute();
   $stmt->close();
   if ($stmt) {
-    $success = "Deleted" && header("refresh:1; url=customes.php");
+    $success = "Deleted" && header("refresh:1; url=customes");
   } else {
     $err = "Try Again Later";
   }
@@ -46,7 +46,7 @@ require_once('partials/_head.php');
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <a href="add_customer.php" class="btn btn-outline-success">
+              <a href="add_customer" class="btn btn-outline-success">
                 <i class="fas fa-user-plus"></i>
                 Add New Customer
               </a>
@@ -74,14 +74,14 @@ require_once('partials/_head.php');
                       <td><?php echo $cust->customer_phoneno; ?></td>
                       <td><?php echo $cust->customer_email; ?></td>
                       <td>
-                        <a href="customes.php?delete=<?php echo $cust->customer_id; ?>">
+                        <a href="customes?delete=<?php echo $cust->customer_id; ?>">
                           <button class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i>
                             Delete
                           </button>
                         </a>
 
-                        <a href="update_customer.php?update=<?php echo $cust->customer_id; ?>">
+                        <a href="update_customer?update=<?php echo $cust->customer_id; ?>">
                           <button class="btn btn-sm btn-primary">
                             <i class="fas fa-user-edit"></i>
                             Update

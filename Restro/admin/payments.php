@@ -46,7 +46,7 @@ require_once('partials/_head.php');
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            <a href="orders.php" class="btn btn-outline-success">
+                            <a href="orders" class="btn btn-outline-success">
                                 <i class="fas fa-plus"></i> <i class="fas fa-utensils"></i>
                                 Make A New Order
                             </a>
@@ -80,14 +80,14 @@ require_once('partials/_head.php');
                                             <td>$ <?php echo $total; ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                                             <td>
-                                                <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
+                                                <a href="pay_order?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
                                                     <button class="btn btn-sm btn-success">
                                                         <i class="fas fa-handshake"></i>
                                                         Pay Order
                                                     </button>
                                                 </a>
 
-                                                <a href="payments.php?cancel=<?php echo $order->order_id; ?>">
+                                                <a href="payments?cancel=<?php echo $order->order_id; ?>">
                                                     <button class="btn btn-sm btn-danger">
                                                         <i class="fas fa-window-close"></i>
                                                         Cancel Order

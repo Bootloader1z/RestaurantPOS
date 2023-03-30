@@ -15,7 +15,7 @@ while ($admin = $res->fetch_object()) {
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="dashboard.php">
+      <a class="navbar-brand pt-0" href="dashboard">
         <img src="assets/img/brand/repos.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
@@ -39,12 +39,12 @@ while ($admin = $res->fetch_object()) {
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="change_profile.php" class="dropdown-item">
+            <a href="change_profile" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="logout.php" class="dropdown-item">
+            <a href="logout" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -57,7 +57,7 @@ while ($admin = $res->fetch_object()) {
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="dashboard.php">
+              <a href="dashboard">
                 <img src="assets/img/brand/repos.png">
               </a>
             </div>
@@ -83,37 +83,37 @@ while ($admin = $res->fetch_object()) {
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="dashboard">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hrm.php">
+            <a class="nav-link" href="hrm">
               <i class="fas fa-user-tie text-primary"></i> HRM
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="customes.php">
+            <a class="nav-link" href="customes">
               <i class="fas fa-users text-primary"></i> Customers
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.php">
+            <a class="nav-link" href="products">
               <i class="ni ni-bullet-list-67 text-primary"></i>Products
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="orders.php">
+            <a class="nav-link" href="orders">
               <i class="ni ni-cart text-primary"></i> Orders
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="payments.php">
+            <a class="nav-link" href="payments">
               <i class="ni ni-credit-card text-primary"></i> Payments
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="receipts.php">
+            <a class="nav-link" href="receipts">
               <i class="fas fa-file-invoice-dollar text-primary"></i> Receipts
             </a>
           </li>
@@ -125,12 +125,12 @@ while ($admin = $res->fetch_object()) {
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="orders_reports.php">
+            <a class="nav-link" href="orders_reports">
               <i class="fas fa-shopping-basket"></i> Orders
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="payments_reports.php">
+            <a class="nav-link" href="payments_reports">
               <i class="fas fa-funnel-dollar"></i> Payments
             </a>
           </li>
@@ -138,7 +138,7 @@ while ($admin = $res->fetch_object()) {
         <hr class="my-3">
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="logout.php">
+            <a class="nav-link" href="logout">
               <i class="fas fa-sign-out-alt text-danger"></i> Log Out
             </a>
           </li>

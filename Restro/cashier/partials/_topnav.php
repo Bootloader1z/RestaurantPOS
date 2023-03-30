@@ -11,7 +11,7 @@ while ($staff = $res->fetch_object()) {
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php"><?php echo $staff->staff_name; ?> Dashboard</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard"><?php echo $staff->staff_name; ?> Dashboard</a>
             <!-- Form -->
 
             <!-- User -->
@@ -31,12 +31,12 @@ while ($staff = $res->fetch_object()) {
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="change_profile.php" class="dropdown-item">
+                        <a href="change_profile" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="logout.php" class="dropdown-item">
+                        <a href="logout" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Logout</span>
                         </a>

@@ -28,7 +28,7 @@ if (isset($_POST['make'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Order Submitted" && header("refresh:1; url=payments.php");
+      $success = "Order Submitted" && header("refresh:1; url=payments");
     } else {
       $err = "Please Try Again Or Try Later";
     }

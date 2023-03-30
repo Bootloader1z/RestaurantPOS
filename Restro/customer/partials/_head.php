@@ -59,7 +59,7 @@
             $.ajax({
 
                 type: "POST",
-                url: "customer_ajax.php",
+                url: "customer_ajax",
                 data: 'custName=' + val,
                 success: function(data) {
                     //alert(data);

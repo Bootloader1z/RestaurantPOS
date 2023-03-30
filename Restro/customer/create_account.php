@@ -21,7 +21,7 @@ if (isset($_POST['addCustomer'])) {
         $postStmt->execute();
         //declare a varible which will be passed to alert function
         if ($postStmt) {
-            $success = "Customer Account Created" && header("refresh:1; url=index.php");
+            $success = "Customer Account Created" && header("refresh:1; url=index");
         } else {
             $err = "Please Try Again Or Try Later";
         }
@@ -90,7 +90,7 @@ require_once('config/code-generator.php');
                                 <div class="form-group">
                                     <div class="text-left">
                                         <button type="submit" name="addCustomer" class="btn btn-primary my-4">Create Account</button>
-                                        <a href="index.php" class=" btn btn-success pull-right">Log In</a>
+                                        <a href="index" class=" btn btn-success pull-right">Log In</a>
                                     </div>
                                 </div>
                             </form>
@@ -99,7 +99,7 @@ require_once('config/code-generator.php');
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <a href="../admin/forgot_pwd.php" target="_blank" class="text-light"><small>Forgot password?</small></a>
+                            <a href="../admin/forgot_pwd" target="_blank" class="text-light"><small>Forgot password?</small></a>
                         </div>
                     </div>
                 </div>

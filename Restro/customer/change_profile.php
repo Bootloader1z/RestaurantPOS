@@ -23,7 +23,7 @@ if (isset($_POST['ChangeProfile'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Profile Updated" && header("refresh:1; url=dashboard.php");
+      $success = "Profile Updated" && header("refresh:1; url=dashboard");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -74,7 +74,7 @@ if (isset($_POST['changePassword'])) {
 
                 //declare a varible which will be passed to alert function
                 if ($stmt) {
-                    $success = "Password Changed" && header("refresh:1; url=dashboard.php");
+                    $success = "Password Changed" && header("refresh:1; url=dashboard");
                 } else {
                     $err = "Please Try Again Or Try Later";
                 }

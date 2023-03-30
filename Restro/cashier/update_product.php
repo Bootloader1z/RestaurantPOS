@@ -26,7 +26,7 @@ if (isset($_POST['UpdateProduct'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Product Updated" && header("refresh:1; url=products.php");
+      $success = "Product Updated" && header("refresh:1; url=products");
     } else {
       $err = "Please Try Again Or Try Later";
     }

@@ -11,7 +11,7 @@ if (isset($_GET['delete'])) {
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
-        $success = "Deleted" && header("refresh:1; url=products.php");
+        $success = "Deleted" && header("refresh:1; url=products");
     } else {
         $err = "Try Again Later";
     }
@@ -46,7 +46,7 @@ require_once('partials/_head.php');
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Food Items
-                            <!-- <a href="add_product.php" class="btn btn-outline-success">
+                            <!-- <a href="add_product" class="btn btn-outline-success">
                                 <i class="fas fa-utensils"></i>
                                 Add New Product
                             </a> -->
@@ -85,7 +85,7 @@ require_once('partials/_head.php');
                                             <td><?php echo $prod->prod_name; ?></td>
                                             <td>$ <?php echo $prod->prod_price; ?></td>
                                             <td>
-                                                <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
+                                                <a href="update_product?update=<?php echo $prod->prod_id; ?>">
                                                     <button class="btn btn-sm btn-primary">
                                                         <i class="fas fa-edit"></i>
                                                         Update

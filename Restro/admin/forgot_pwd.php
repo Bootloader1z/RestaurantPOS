@@ -21,7 +21,7 @@ if (isset($_POST['reset_pwd'])) {
     $reset->execute();
     if ($reset) {
       $success = "Password Reset Instructions Sent To Your Email";
-      // && header("refresh:1; url=index.php");
+      // && header("refresh:1; url=index");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -74,7 +74,7 @@ require_once('partials/_head.php');
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <a href="index.php" class="text-light"><small>Log In?</small></a>
+                <a href="index" class="text-light"><small>Log In?</small></a>
               </div>
             </div>
           </div>
