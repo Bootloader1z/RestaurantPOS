@@ -13,4 +13,3 @@ RewriteRule ^(.*)$ $1.php [NC,L]
 </Files>
 
 Options -Indexes
-DirectoryIndex index.php

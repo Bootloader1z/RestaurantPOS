@@ -12,7 +12,7 @@ if (isset($_GET['cancel'])) {
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
-        $success = "Deleted" && header("refresh:1; url=payments.php");
+        $success = "Deleted" && header("refresh:1; url=payments");
     } else {
         $err = "Try Again Later";
     }
