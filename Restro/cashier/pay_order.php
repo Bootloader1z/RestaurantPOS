@@ -7,49 +7,50 @@ include('config/code-generator.php');
 check_login();
 
 if (isset($_POST['pay'])) {
-  //Prevent Posting Blank Values
-  if (empty($_POST["pay_code"]) || empty($_POST["pay_amt"]) || empty($_POST['pay_method'])) {
-    $err = "Blank Values Not Accepted";
+//Prevent Posting Blank Values
+if (empty($_POST["pay_code"]) || empty($_POST["pay_amt"]) || empty($_POST['pay_method'])) {
+  $err = "Blank Values Not Accepted";
+} else {
+  $pay_code = $_POST['pay_code'];
+  
+  // check if pay code starts with "RM"
+$paytime = "RM".date("Y");
+  if (substr($pay_code, 0, 6) !== $paytime) {
+    // the code does not start with "RM", so reject it
+    $err = "Unauthorize Payment Code";
   } else {
-    $pay_code = $_POST['pay_code'];
-  
-    // check if pay code starts with "RM"
-  $paytime = "RM".date("Y");
-    if (substr($pay_code, 0, 6) !== $paytime) {
-      // the code does not start with "RM", so reject it
-      $err = "Unauthorize Payment Code";
+    // the code starts with "RM", so proceed with the action
+    $order_code = $_GET['order_code'];
+    $customer_id = $_GET['customer_id'];
+    $pay_amt  = $_POST['pay_amt'];
+    $pay_method = $_POST['pay_method'];
+    $pay_id = $_POST['pay_id'];
+    $order_status = $_GET['order_status'];
+
+    //Insert Captured information to a database table
+    $postQuery = "INSERT INTO rpos_payments (pay_id, pay_code, order_code, customer_id, pay_amt, pay_method) VALUES(?,?,?,?,?,?)";
+    $upQry = "UPDATE rpos_orders SET order_status =? WHERE order_code =?";
+
+    $postStmt = $mysqli->prepare($postQuery);
+    $upStmt = $mysqli->prepare($upQry);
+
+    //bind paramaters
+    $rc = $postStmt->bind_param('ssssss', $pay_id, $pay_code, $order_code, $customer_id, $pay_amt, $pay_method);
+    $rc = $upStmt->bind_param('ss', $order_status, $order_code);
+
+    $postStmt->execute();
+    $upStmt->execute();
+
+    //declare a varible which will be passed to alert function
+    if ($upStmt && $postStmt) {
+      $success = "Paid" && header("refresh:1; url=receipts");
     } else {
-      // the code starts with "RM", so proceed with the action
-      $order_code = $_GET['order_code'];
-      $customer_id = $_GET['customer_id'];
-      $pay_amt  = $_POST['pay_amt'];
-      $pay_method = $_POST['pay_method'];
-      $pay_id = $_POST['pay_id'];
-      $order_status = $_GET['order_status'];
-  
-      //Insert Captured information to a database table
-      $postQuery = "INSERT INTO rpos_payments (pay_id, pay_code, order_code, customer_id, pay_amt, pay_method) VALUES(?,?,?,?,?,?)";
-      $upQry = "UPDATE rpos_orders SET order_status =? WHERE order_code =?";
-  
-      $postStmt = $mysqli->prepare($postQuery);
-      $upStmt = $mysqli->prepare($upQry);
-  
-      //bind paramaters
-      $rc = $postStmt->bind_param('ssssss', $pay_id, $pay_code, $order_code, $customer_id, $pay_amt, $pay_method);
-      $rc = $upStmt->bind_param('ss', $order_status, $order_code);
-  
-      $postStmt->execute();
-      $upStmt->execute();
-  
-      //declare a varible which will be passed to alert function
-      if ($upStmt && $postStmt) {
-        $success = "Paid" && header("refresh:1; url=receipts");
-      } else {
-        $err = "Please Try Again Or Try Later";
-      }
+      $err = "Please Try Again Or Try Later";
     }
   }
 }
+}
+
 require_once('partials/_head.php');
 ?>
 
@@ -70,10 +71,11 @@ require_once('partials/_head.php');
     $res = $stmt->get_result();
     while ($order = $res->fetch_object()) {
         $total = ($order->prod_price * $order->prod_qty);
+
     ?>
     
     <!-- Header -->
-    <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
+    <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
     <span class="mask bg-gradient-dark opacity-8"></span>
       <div class="container-fluid">
         <div class="header-body">
@@ -98,7 +100,7 @@ require_once('partials/_head.php');
                   </div>
                   <div class="col-md-6">
                     <label>Payment Code</label>
-                    <input type="text" name="pay_code" value="<?php echo $mpesaCode; ?>" class="form-control" value="">
+                    <input type="text" name="pay_code" value="<?php echo $TMpesaCode ?>" class="form-control" value="">
                   </div>
                 </div>
                 <hr>

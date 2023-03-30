@@ -4,6 +4,33 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    $adn = "DELETE FROM  rpos_orders  WHERE  order_id = ?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+      $success = "Deleted" && header("refresh:1; url=orders_reports");
+    } else {
+      $err = "Try Again Later";
+    }
+  }
+elseif (isset($_GET['deleteall'])) {
+    $id = intval($_GET['deleteall']);
+    $adn = "DELETE FROM rpos_orders WHERE ?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+      $success = "Deleted"; 
+      header("refresh:1; url=orders_reports");
+    } else {
+      $err = "Try Again Later";
+    }
+  }
 ?>
 
 <body>
@@ -33,6 +60,12 @@ require_once('partials/_head.php');
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Orders Records
+                            <a class="card-header text-right" href="orders_reports?deleteall=1">
+                                    <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                    Delete all
+                                    </button>
+                                </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -46,6 +79,7 @@ require_once('partials/_head.php');
                                         <th scope="col">Total Price</th>
                                         <th scop="col">Status</th>
                                         <th class="text-success" scope="col">Date</th>
+                                        <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,6 +105,12 @@ require_once('partials/_head.php');
                                                     echo "<span class='badge badge-success'>$order->order_status</span>";
                                                 } ?></td>
                                             <td class="text-success"><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                                            <td><a href="orders_reports?delete=<?php echo $order->order_id; ?>">
+                                                <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
+                                            </button>
+                                            </a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

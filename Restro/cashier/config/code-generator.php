@@ -10,6 +10,7 @@
 
 
     //----------System Generated Numbers------------------------------------------//
+    
     $length = 4;
     $alpha= substr(str_shuffle("QWERTYUIOPLKJHGFDSAZXCVBNM"),1,$length);
     $ln = 4;
@@ -24,6 +25,6 @@
 
 
     $length = 10;
-    $mpesaCode = substr(str_shuffle("Q1W2E3R4T5Y6U7I8O9PLKJHGFDSAZXCVBNM"),1,$length);
-    
+$mpesaCode = substr(str_shuffle("Q1W2E3R4T5Y6U7I8O9PLKJHGFDSAZXCVBNM"), 1, $length);
+$TMpesaCode = "RM".date("Y") . $mpesaCode;
 ?>

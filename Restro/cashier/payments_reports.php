@@ -4,6 +4,33 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    $adn = "DELETE FROM  rpos_payments  WHERE  pay_id = ?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+      $success = "Deleted" && header("refresh:1; url=payments_reports");
+    } else {
+      $err = "Try Again Later";
+    }
+  }
+elseif (isset($_GET['deleteall'])) {
+    $id = intval($_GET['deleteall']);
+    $adn = "DELETE FROM rpos_payments WHERE ?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+      $success = "Deleted"; 
+      header("refresh:1; url=payments_reports");
+    } else {
+      $err = "Try Again Later";
+    }
+  }
 ?>
 
 <body>
@@ -33,6 +60,12 @@ require_once('partials/_head.php');
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Payment Reports
+                            <a class="card-header text-right" href="payments_reports?deleteall=1">
+                                    <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                    Delete all
+                                    </button>
+                                </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -43,6 +76,7 @@ require_once('partials/_head.php');
                                         <th class="text-success" scope="col">Order Code</th>
                                         <th scope="col">Amount Paid</th>
                                         <th class="text-success" scope="col">Date Paid</th>
+                                        <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +102,14 @@ require_once('partials/_head.php');
                                             </td>
                                             <td class="text-success">
                                                 <?php echo date('d/M/Y g:i', strtotime($payment->created_at)) ?>
+                                            </td>
+                                            <td>
+                                            <a href="payments_reports?delete=<?php echo $payment->pay_id; ?>">
+                                                <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
+                                            </button>
+                                            </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
