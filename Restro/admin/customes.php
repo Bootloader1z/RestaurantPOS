@@ -74,12 +74,12 @@ require_once('partials/_head.php');
                       <td><?php echo $cust->customer_phoneno; ?></td>
                       <td><?php echo $cust->customer_email; ?></td>
                       <td>
-                        <a href="customes?delete=<?php echo $cust->customer_id; ?>">
-                          <button class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash"></i>
-                            Delete
-                          </button>
-                        </a>
+                      <a href="customes?delete=<?php echo $cust->customer_id; ?>" onclick="return confirm('Are you sure you want to delete this customer?');">
+                        <button class="btn btn-sm btn-danger">
+                          <i class="fas fa-trash"></i>
+                          Delete
+                        </button>
+                      </a>
 
                         <a href="update_customer?update=<?php echo $cust->customer_id; ?>">
                           <button class="btn btn-sm btn-primary">
