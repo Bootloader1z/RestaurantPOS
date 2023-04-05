@@ -60,12 +60,7 @@ elseif (isset($_GET['deleteall'])) {
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Orders Records
-                            <a class="card-header text-right" href="orders_reports?deleteall=1">
-                                    <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                    Delete all
-                                    </button>
-                                </a>
+                            
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -79,7 +74,7 @@ elseif (isset($_GET['deleteall'])) {
                                         <th scope="col">Total Price</th>
                                         <th scop="col">Status</th>
                                         <th class="text-success" scope="col">Date</th>
-                                        <th scope="col">Delete</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>

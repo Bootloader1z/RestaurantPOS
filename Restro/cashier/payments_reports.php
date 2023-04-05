@@ -60,12 +60,7 @@ elseif (isset($_GET['deleteall'])) {
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Payment Reports
-                            <a class="card-header text-right" href="payments_reports?deleteall=1">
-                                    <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                    Delete all
-                                    </button>
-                                </a>
+                            
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -76,7 +71,7 @@ elseif (isset($_GET['deleteall'])) {
                                         <th class="text-success" scope="col">Order Code</th>
                                         <th scope="col">Amount Paid</th>
                                         <th class="text-success" scope="col">Date Paid</th>
-                                        <th scope="col">Delete</th>
+                                        <!-- <th scope="col">Delete</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,14 +97,6 @@ elseif (isset($_GET['deleteall'])) {
                                             </td>
                                             <td class="text-success">
                                                 <?php echo date('d/M/Y g:i', strtotime($payment->created_at)) ?>
-                                            </td>
-                                            <td>
-                                            <a href="payments_reports?delete=<?php echo $payment->pay_id; ?>">
-                                                <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
-                                            </button>
-                                            </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
