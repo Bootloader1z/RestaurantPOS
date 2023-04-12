@@ -100,12 +100,6 @@ elseif (isset($_GET['deleteall'])) {
                                                     echo "<span class='badge badge-success'>$order->order_status</span>";
                                                 } ?></td>
                                             <td class="text-success"><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
-                                            <td><a href="orders_reports?delete=<?php echo $order->order_id; ?>">
-                                                <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
-                                            </button>
-                                            </a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
