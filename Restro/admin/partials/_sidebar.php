@@ -16,7 +16,7 @@ while ($admin = $res->fetch_object()) {
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="dashboard">
-        <img src="assets/img/brand/repos.png" class="navbar-brand-img" alt="...">
+        <img src="assets/img/brand/bgpos.svg" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -58,7 +58,7 @@ while ($admin = $res->fetch_object()) {
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="dashboard">
-                <img src="assets/img/brand/repos.png">
+                <img src="assets/img/brand/bgpos.svg">
               </a>
             </div>
             <div class="col-6 collapse-close">
