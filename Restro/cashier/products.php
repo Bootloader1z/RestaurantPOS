@@ -59,7 +59,6 @@ require_once('partials/_head.php');
                                         <th scope="col">Product Code</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Price</th>
-                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,14 +83,6 @@ require_once('partials/_head.php');
                                             <td><?php echo $prod->prod_code; ?></td>
                                             <td><?php echo $prod->prod_name; ?></td>
                                             <td>$ <?php echo $prod->prod_price; ?></td>
-                                            <td>
-                                                <a href="update_product?update=<?php echo $prod->prod_id; ?>">
-                                                    <button class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-edit"></i>
-                                                        Update
-                                                    </button>
-                                                </a>
-                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

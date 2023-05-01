@@ -2,7 +2,29 @@
 session_start();
 include('config/config.php');
 //login 
+function GetStr($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return trim(strip_tags(substr($string, $ini, $len)));
+}
+// error_reporting(0);
+#-------------------[1st REQ]--------------------#
+if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+} else {
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+}
+ //// Short codes $cc $mes $ano $cvv $firstname $lastname $street $zip $phone $state $email/////////////////////
+
+
+
 if (isset($_POST['addCustomer'])) {
+    
     //Prevent Posting Blank Values
     if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email']) || empty($_POST['customer_password'])) {
         $err = "Blank Values Not Accepted";
@@ -12,12 +34,13 @@ if (isset($_POST['addCustomer'])) {
         $customer_email = $_POST['customer_email'];
         $customer_password = sha1(md5($_POST['customer_password'])); //Hash This 
         $customer_id = $_POST['customer_id'];
+        $ipaddr = $_POST['Ipaddress'];
 
         //Insert Captured information to a database table
-        $postQuery = "INSERT INTO rpos_customers (customer_id, customer_name, customer_phoneno, customer_email, customer_password) VALUES(?,?,?,?,?)";
+        $postQuery = "INSERT INTO rpos_customers (customer_id, customer_name, customer_phoneno, customer_email, customer_password, IP_Address) VALUES(?,?,?,?,?,?)";
         $postStmt = $mysqli->prepare($postQuery);
         //bind paramaters
-        $rc = $postStmt->bind_param('sssss', $customer_id, $customer_name, $customer_phoneno, $customer_email, $customer_password);
+        $rc = $postStmt->bind_param('ssssss', $customer_id, $customer_name, $customer_phoneno, $customer_email, $customer_password, $ipaddr);
         $postStmt->execute();
         //declare a varible which will be passed to alert function
         if ($postStmt) {
@@ -27,6 +50,7 @@ if (isset($_POST['addCustomer'])) {
         }
     }
 }
+
 require_once('partials/_head.php');
 require_once('config/code-generator.php');
 ?>
@@ -58,6 +82,7 @@ require_once('config/code-generator.php');
                                         </div>
                                         <input class="form-control" required name="customer_name" placeholder="Full Name" type="text">
                                         <input class="form-control" value="<?php echo $cus_id;?>" required name="customer_id"  type="hidden">
+                                        <input class="form-control" value="<?php echo $ip_address;?>" required name="Ipaddress"  type="hidden">
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
