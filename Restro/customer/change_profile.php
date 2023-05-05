@@ -7,11 +7,11 @@ include('config/code-generator.php');
 check_login();
 if (isset($_POST['ChangeProfile'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email'])) {
+  if (empty($_POST["customer_phone"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $customer_name = $_POST['customer_name'];
-    $customer_phoneno = $_POST['customer_phoneno'];
+    $customer_phoneno = $_POST['customer_phone'];
     $customer_email = $_POST['customer_email'];
     $customer_id = $_SESSION['customer_id'];
 
@@ -23,7 +23,7 @@ if (isset($_POST['ChangeProfile'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Profile Updated" && header("refresh:1; url=dashboard");
+      $success = "Profile Updated" && header("refresh:1; url=change_profile");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -74,7 +74,7 @@ if (isset($_POST['changePassword'])) {
 
                 //declare a varible which will be passed to alert function
                 if ($stmt) {
-                    $success = "Password Changed" && header("refresh:1; url=dashboard");
+                    $success = "Password Changed" && header("refresh:1; url=change_profile");
                 } else {
                     $err = "Please Try Again Or Try Later";
                 }
@@ -174,14 +174,14 @@ require_once('partials/_head.php');
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form method="post">
+                                <form method="POST">
                                     <h6 class="heading-small text-muted mb-4">User information</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-username">Full Name</label>
-                                                    <input type="text" name="customer_name" value="<?php echo $customer->customer_name; ?>" id="input-username" class="form-control form-control-alternative" ">
+                                                    <input type="text" name="customer_name" value="<?php echo $customer->customer_name; ?>" id="input-username" class="form-control form-control-alternative" >
                                                 </div>
                                             </div>
                                             <div class=" col-lg-6">
@@ -199,13 +199,13 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input type="submit" id="input-email" name="ChangeProfile" class="btn btn-success form-control-alternative" value="Submit"">
+                                                <input type="submit" id="input-email" name="ChangeProfile" class="btn btn-success form-control-alternative" value="Submit">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                 <hr>
-                                <form method =" post">
+                                <form method ="post">
                                         <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
