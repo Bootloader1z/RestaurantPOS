@@ -102,6 +102,11 @@ while ($customer = $res->fetch_object()) {
               <i class="ni ni-credit-card text-primary"></i> Payments
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chat/chatpage">
+              <i class="ni ni-credit-card text-primary"></i> Chatpage
+            </a>
+          </li>
         </ul>
         <!-- Divider -->
         <hr class="my-3">

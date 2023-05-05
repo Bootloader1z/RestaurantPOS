@@ -16,7 +16,7 @@ while ($customer = $res->fetch_object()) {
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="dashboard">
-        <img src="../admin/assets/img/brand/test.svg" class="navbar-brand-img" alt="...">
+        <img src="../../admin/assets/img/brand/test.svg" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -31,7 +31,7 @@ while ($customer = $res->fetch_object()) {
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt='Image placeholder' src='../admin/assets/img/brand/test.svg'>
+                <img alt='Image placeholder' src='../../admin/assets/img/brand/test.svg'>
               </span>
             </div>
           </a>
@@ -58,7 +58,7 @@ while ($customer = $res->fetch_object()) {
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="dashboard">
-                <img src="../admin/assets/img/brand/test.svg">
+                <img src="../../admin/assets/img/brand/test.svg">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -83,22 +83,22 @@ while ($customer = $res->fetch_object()) {
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard">
+            <a class="nav-link" href="../dashboard">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="change_profile">
+            <a class="nav-link" href="../change_profile">
               <i class="fas fa-users text-primary"></i> My Profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="orders">
+            <a class="nav-link" href="../orders">
               <i class="ni ni-cart text-primary"></i>Make Order
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="payments">
+            <a class="nav-link" href="../payments">
               <i class="ni ni-credit-card text-primary"></i> Payments
             </a>
           </li>
@@ -110,12 +110,12 @@ while ($customer = $res->fetch_object()) {
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="orders_reports">
+            <a class="nav-link" href="../orders_reports">
               <i class="fas fa-shopping-basket"></i> My Orders
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="payments_reports">
+            <a class="nav-link" href="../payments_reports">
               <i class="fas fa-funnel-dollar"></i> My Payments
             </a>
           </li>
@@ -123,7 +123,7 @@ while ($customer = $res->fetch_object()) {
         <hr class="my-3">
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="logout">
+            <a class="nav-link" href="../logout">
               <i class="fas fa-sign-out-alt text-danger"></i> Log Out
             </a>
           </li>
