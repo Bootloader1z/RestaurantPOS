@@ -20,26 +20,25 @@ color:white;
 }
   </style>
 <?php
-  include "config.php";
-  if($_POST)
-	{
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		
-		$sql = "SELECT * FROM `register` where email = '".$email."' and password = '".$password."' ";
-		$query =  mysqli_query($conn, $sql);
-		if(mysqli_num_rows($query)>0)
-		{
-			$row = mysqli_fetch_assoc($query);
-			session_start();
-			$_SESSION['name'] = $row['name'];
-			header('Location: home.php');
-		}
-		else
-		{
-			echo "<script> alert('Invalid Email or Password.'); </script>";
-		}
-	}
+  session_start();
+  include('config/config.php');
+  //login 
+  if (isset($_POST['login'])) {
+      $customer_email = $_POST['email'];
+      $customer_password = sha1(md5($_POST['password'])); //double encrypt to increase security
+      $stmt = $mysqli->prepare("SELECT customer_email, customer_password, customer_id  FROM  rpos_customers WHERE (customer_email =? AND customer_password =?)"); //sql to log in user
+      $stmt->bind_param('ss',  $customer_email, $customer_password); //bind fetched parameters
+      $stmt->execute(); //execute bind 
+      $stmt->bind_result($customer_email, $customer_password, $customer_id); //bind result
+      $rs = $stmt->fetch();
+      $_SESSION['customer_id'] = $customer_id;
+      if ($rs) {
+          //if its sucessfull
+          header("location: chatpage.php");
+      } else {
+          $err = "Incorrect Authentication Credentials ";
+      }
+  }
 ?>
 
 <div class="container">
@@ -60,7 +59,7 @@ color:white;
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" name="login" class="btn btn-primary">Login</button>
       </div>
     </div>
   </form>
