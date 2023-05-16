@@ -6,12 +6,20 @@ check_login();
 //Cancel Order
 if (isset($_GET['cancel'])) {
     $id = $_GET['cancel'];
+    $prod_qty = $_GET['quantity'];
+    $prod_id = $_GET['prodid'];
     $adn = "DELETE FROM  rpos_orders  WHERE  order_id = ?";
     $stmt = $mysqli->prepare($adn);
     $stmt->bind_param('s', $id);
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
+        $deductQuery = "UPDATE rpos_products SET quantity = quantity + ? WHERE prod_id = ?";
+      $deductStmt = $mysqli->prepare($deductQuery);
+      //bind parameters
+      $rc = $deductStmt->bind_param('ss', $prod_qty, $prod_id);
+      $deductStmt->execute();
+
         $success = "Deleted" && header("refresh:1; url=payments");
     } else {
         $err = "Try Again Later";
@@ -32,7 +40,7 @@ require_once('partials/_head.php');
         require_once('partials/_topnav.php');
         ?>
         <!-- Header -->
-        <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
+        <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
         <span class="mask bg-gradient-dark opacity-8"></span>
             <div class="container-fluid">
                 <div class="header-body">
@@ -65,8 +73,7 @@ require_once('partials/_head.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $customer_id = $_SESSION['customer_id'];
-                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status ='' AND customer_id = '$customer_id'  ORDER BY `rpos_orders`.`created_at` DESC  ";
+                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status =''  ORDER BY `rpos_orders`.`created_at` DESC  ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
@@ -88,7 +95,7 @@ require_once('partials/_head.php');
                                                     </button>
                                                 </a>
 
-                                                <a href="payments?cancel=<?php echo $order->order_id; ?>">
+                                                <a href="payments?cancel=<?php echo $order->order_id; ?>&quantity=<?php echo $order->prod_qty; ?>&prodid=<?php echo $order->prod_id; ?>">
                                                     <button class="btn btn-sm btn-danger">
                                                         <i class="fas fa-window-close"></i>
                                                         Cancel Order
