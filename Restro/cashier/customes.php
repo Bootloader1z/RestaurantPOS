@@ -58,7 +58,6 @@ require_once('partials/_head.php');
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Contact Number</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,14 +72,6 @@ require_once('partials/_head.php');
                                             <td><?php echo $cust->customer_name; ?></td>
                                             <td><?php echo $cust->customer_phoneno; ?></td>
                                             <td><?php echo $cust->customer_email; ?></td>
-                                            <td>
-                                                <a href="update_customer?update=<?php echo $cust->customer_id; ?>">
-                                                    <button class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-user-edit"></i>
-                                                        Update
-                                                    </button>
-                                                </a>
-                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
