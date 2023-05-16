@@ -7,7 +7,7 @@ include('config/code-generator.php');
 check_login();
 if (isset($_POST['UpdateProduct'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price'])) {
+  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price']) || empty($_POST['prod_quantity'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $update = $_GET['update'];
@@ -17,12 +17,12 @@ if (isset($_POST['UpdateProduct'])) {
     move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
-
+    $prod_quantity = $_POST['prod_quantity'];
     //Insert Captured information to a database table
-    $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =? WHERE prod_id = ?";
+    $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =?, quantity=? WHERE prod_id = ?";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $update);
+    $rc = $postStmt->bind_param('sssssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $prod_quantity, $update);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -91,6 +91,12 @@ require_once('partials/_head.php');
                       <label>Product Price</label>
                       <input type="text" name="prod_price" class="form-control" value="<?php echo $prod->prod_price; ?>">
                     </div>
+                    <div>
+                  <div class="col-md-6">
+                    <label>Quantity</label>
+                    <input type="text" name="prod_quantity" class="form-control" value="">
+                  </div>
+                </div>
                   </div>
                   <hr>
                   <div class="form-row">

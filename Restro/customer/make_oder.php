@@ -27,6 +27,11 @@ if (isset($_POST['make'])) {
         $postStmt->execute();
         //declare a varible which will be passed to alert function
         if ($postStmt) {
+            $deductQuery = "UPDATE rpos_products SET quantity = quantity - ? WHERE prod_id = ?";
+            $deductStmt = $mysqli->prepare($deductQuery);
+            //bind parameters
+            $rc = $deductStmt->bind_param('ss', $prod_qty, $prod_id);
+            $deductStmt->execute();
             $success = "Order Submitted" && header("refresh:1; url=payments");
         } else {
             $err = "Please Try Again Or Try Later";
@@ -104,7 +109,7 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="col-md-6">
                                             <label>Product Quantity</label>
-                                            <input type="number" name="prod_qty" class="form-control" value="" min="1">
+                                            <input type="number" name="prod_qty" class="form-control" value="" min="1" max ="<?php echo $prod->quantity; ?>">
                                         </div>
                                     </div>
                                 <?php } ?>

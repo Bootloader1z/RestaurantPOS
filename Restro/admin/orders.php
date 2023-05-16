@@ -69,12 +69,21 @@ require_once('partials/_head.php');
                       <td><?php echo $prod->prod_name; ?></td>
                       <td>$ <?php echo $prod->prod_price; ?></td>
                       <td>
-                        <a href="make_oder?prod_id=<?php echo $prod->prod_id; ?>&prod_name=<?php echo $prod->prod_name; ?>&prod_price=<?php echo $prod->prod_price; ?>">
+                        <?php if($prod->quantity == 0){?>
+                          <button class="btn btn-sm btn-warning">
+                            <i class="fas fa-cart-plus"></i>
+                            No Stock available
+                          </button>
+                        </a>
+                        <?php }else{?>
+                          <a href="make_oder?prod_id=<?php echo $prod->prod_id; ?>&prod_name=<?php echo $prod->prod_name; ?>&prod_price=<?php echo $prod->prod_price; ?>">
                           <button class="btn btn-sm btn-warning">
                             <i class="fas fa-cart-plus"></i>
                             Place Order
                           </button>
                         </a>
+                         <?php }?>
+
                       </td>
                     </tr>
                   <?php } ?>

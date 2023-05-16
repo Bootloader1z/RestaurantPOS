@@ -58,6 +58,7 @@ require_once('partials/_head.php');
                     <th scope="col">Product Code</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -83,6 +84,7 @@ require_once('partials/_head.php');
                       <td><?php echo $prod->prod_code; ?></td>
                       <td><?php echo $prod->prod_name; ?></td>
                       <td>$ <?php echo $prod->prod_price; ?></td>
+                      <td><?php echo $prod->quantity; ?></td>
                       <td>
                         <a href="products?delete=<?php echo $prod->prod_id; ?>">
                           <button class="btn btn-sm btn-danger">
