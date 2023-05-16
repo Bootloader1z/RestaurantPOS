@@ -4,10 +4,10 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 if (isset($_GET['delete'])) {
-  $id = intval($_GET['delete']);
-  $adn = "DELETE FROM  rpos_products  WHERE  prod_id = ?";
+  $id = strval($_GET['delete']);
+  $adn = "DELETE FROM  rpos_products  WHERE  prod_id = '$id'";
   $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('s', $id);
+ 
   $stmt->execute();
   $stmt->close();
   if ($stmt) {
