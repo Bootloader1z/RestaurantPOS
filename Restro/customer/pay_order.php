@@ -113,7 +113,7 @@ require_once('partials/_head.php');
                 <div class="form-row">
                   <div class="col-md-6">
                     <label>Amount ($)</label>
-                    <input type="text" name="pay_amt" readonly value="<?php echo $total;?>" class="form-control">
+                    <input type="text" name="pay_amt" readonly value="<?php echo number_format($total, 2, '.', ','); ?>" class="form-control">
                   </div>
                   <div class="col-md-6">
                     <label>Payment Method</label>

@@ -27,6 +27,7 @@ $stmt->close();
 $query = "SELECT SUM(pay_amt) FROM `rpos_payments` ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
-$stmt->bind_result($sales);
+$stmt->bind_result($sales_formatted);
 $stmt->fetch();
+$sales = number_format($sales_formatted );
 $stmt->close();

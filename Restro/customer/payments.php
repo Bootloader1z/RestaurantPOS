@@ -26,6 +26,7 @@ if (isset($_GET['cancel'])) {
     }
 }
 require_once('partials/_head.php');
+require_once('partials/_analytics.php');
 ?>
 
 <body>
@@ -58,6 +59,26 @@ require_once('partials/_head.php');
                                 <i class="fas fa-plus"></i> <i class="fas fa-utensils"></i>
                                 Make A New Order
                             </a>
+                            <?php
+                            $rep = "SELECT * FROM `rpos_orders` WHERE `order_status` = ''";
+                            $stmt = $mysqli->prepare($rep);
+                            $stmt->execute();
+                            $res = $stmt->get_result();
+                            $payall = $res->fetch_object();
+
+                            
+                            ?>
+                            <?php
+                            if(!$payall == 0){ ?> 
+                            <a href="payall?customer_id=<?php echo $customer_id ?>&payall=<?php echo $Allnotpaid; ?>&order_status=Paid">
+                                                    <button class="btn btn-sm btn-success">
+                                                        <i class="fas fa-handshake"></i>
+                                                        Pay All Order
+                                                    </button>
+                                                </a>
+                                                <?php } else{ ?>
+
+                                                    <?php }?>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -85,7 +106,7 @@ require_once('partials/_head.php');
                                             <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
                                             <td><?php echo $order->customer_name; ?></td>
                                             <td><?php echo $order->prod_name; ?></td>
-                                            <td>$ <?php echo $total; ?></td>
+                                            <td>$ <?php echo number_format($total, 2, '.', ','); ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                                             <td>
                                                 <a href="pay_order?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
