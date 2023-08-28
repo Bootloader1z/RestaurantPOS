@@ -140,9 +140,9 @@
 
             <div class="links">
 			
-                <a href="wait?url=Restro/admin/">Admin Log In</a>
-                <a href="wait?url=Restro/cashier/">Cashier Log In</a>
-                <a href="wait?url=Restro/customer">Customer Log In</a>
+                <a href="Restro/admin/">Admin Log In</a>
+                <a href="Restro/cashier/">Cashier Log In</a>
+                <a href="Restro/customer">Customer Log In</a>
             </div>
         </div>
     </div>
