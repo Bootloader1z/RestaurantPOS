@@ -8,13 +8,13 @@ if (isset($_GET['cancel'])) {
     $id = $_GET['cancel'];
     $prod_qty = $_GET['quantity'];
     $prod_id = $_GET['prodid'];
-    $adn = "DELETE FROM  rpos_orders  WHERE  order_id = ?";
+    $adn = "DELETE FROM  fms_orders  WHERE  order_id = ?";
     $stmt = $mysqli->prepare($adn);
     $stmt->bind_param('s', $id);
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
-        $deductQuery = "UPDATE rpos_products SET quantity = quantity + ? WHERE prod_id = ?";
+        $deductQuery = "UPDATE fms_products SET quantity = quantity + ? WHERE prod_id = ?";
       $deductStmt = $mysqli->prepare($deductQuery);
       //bind parameters
       $rc = $deductStmt->bind_param('ss', $prod_qty, $prod_id);
@@ -60,7 +60,7 @@ require_once('partials/_analytics.php');
                                 Make A New Order
                             </a>
                             <?php
-                            $rep = "SELECT * FROM `rpos_orders` WHERE `order_status` = ''";
+                            $rep = "SELECT * FROM `fms_orders` WHERE `order_status` = ''";
                             $stmt = $mysqli->prepare($rep);
                             $stmt->execute();
                             $res = $stmt->get_result();
@@ -94,7 +94,7 @@ require_once('partials/_analytics.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status =''  ORDER BY `rpos_orders`.`created_at` DESC  ";
+                                    $ret = "SELECT * FROM  fms_orders WHERE order_status =''  ORDER BY `fms_orders`.`created_at` DESC  ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();

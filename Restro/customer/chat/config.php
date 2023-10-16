@@ -3,7 +3,7 @@
 $dbHost ='localhost';
 $dbUsername ='root';
 $dbPassword ='';
-$dbDatabase ='tutorial_db';
+$dbDatabase ='fms_chat';
 $conn=mysqli_connect($dbHost,$dbUsername,$dbPassword,$dbDatabase);
 
 ?>

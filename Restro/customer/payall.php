@@ -26,7 +26,7 @@ if (isset($_POST['pay'])) {
       }
       else
       {
-        $ret = "SELECT * FROM rpos_orders WHERE order_status='' AND order_code NOT IN (SELECT order_code FROM rpos_payments WHERE pay_amt>0)";
+        $ret = "SELECT * FROM fms_orders WHERE order_status='' AND order_code NOT IN (SELECT order_code FROM fms_payments WHERE pay_amt>0)";
         $stmt = $mysqli->prepare($ret);
         $stmt->execute();
         $res = $stmt->get_result();
@@ -48,19 +48,19 @@ if (isset($_POST['pay'])) {
             $pay_id = $_POST['pay_id'];
             $order_status = $_GET['order_status'];
         
-            while (mysqli_num_rows(mysqli_query($mysqli,"SELECT * FROM rpos_payments WHERE pay_id='$payid'")) > 0) {
+            while (mysqli_num_rows(mysqli_query($mysqli,"SELECT * FROM fms_payments WHERE pay_id='$payid'")) > 0) {
               // If the payid already exists, generate a new one
               $payid = bin2hex(random_bytes('3'));
             }
           
             // Insert the payment information into the payments table
-            $postQuery = "INSERT INTO rpos_payments (pay_id, pay_code, order_code, customer_id, pay_amt, pay_method) VALUES(?,?,?,?,?,?)";
+            $postQuery = "INSERT INTO fms_payments (pay_id, pay_code, order_code, customer_id, pay_amt, pay_method) VALUES(?,?,?,?,?,?)";
             $postStmt = $mysqli->prepare($postQuery);
             $rc = $postStmt->bind_param('ssssss', $payid, $pay_code, $order->order_code, $customer_id, $order_total, $pay_method);
             $postStmt->execute();
         
             // Update the order status in the orders table
-            $upQry = "UPDATE rpos_orders SET order_status =? WHERE order_code =?";
+            $upQry = "UPDATE fms_orders SET order_status =? WHERE order_code =?";
             $upStmt = $mysqli->prepare($upQry);
             $rc = $upStmt->bind_param('ss', $order_status, $order->order_code);
             $upStmt->execute();
@@ -98,7 +98,7 @@ if (isset($_POST['pay'])) {
 
 //
 require_once('partials/_head.php');
-$ret = "SELECT * FROM  rpos_orders WHERE order_status = '' ";
+$ret = "SELECT * FROM  fms_orders WHERE order_status = '' ";
       $stmt = $mysqli->prepare($ret);
       $stmt->execute();
       $res = $stmt->get_result();

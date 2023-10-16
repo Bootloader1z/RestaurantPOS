@@ -37,7 +37,7 @@ if (isset($_POST['addCustomer'])) {
         $ipaddr = $_POST['Ipaddress'];
 
         //Insert Captured information to a database table
-        $postQuery = "INSERT INTO rpos_customers (customer_id, customer_name, customer_phoneno, customer_email, customer_password, IP_Address) VALUES(?,?,?,?,?,?)";
+        $postQuery = "INSERT INTO fms_customers (customer_id, customer_name, customer_phoneno, customer_email, customer_password, IP_Address) VALUES(?,?,?,?,?,?)";
         $postStmt = $mysqli->prepare($postQuery);
         //bind paramaters
         $rc = $postStmt->bind_param('ssssss', $customer_id, $customer_name, $customer_phoneno, $customer_email, $customer_password, $ipaddr);

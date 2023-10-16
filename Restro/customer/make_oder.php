@@ -20,14 +20,14 @@ if (isset($_POST['make'])) {
         $prod_qty = $_POST['prod_qty'];
 
         //Insert Captured information to a database table
-        $postQuery = "INSERT INTO rpos_orders (prod_qty, order_id, order_code, customer_id, customer_name, prod_id, prod_name, prod_price) VALUES(?,?,?,?,?,?,?,?)";
+        $postQuery = "INSERT INTO fms_orders (prod_qty, order_id, order_code, customer_id, customer_name, prod_id, prod_name, prod_price) VALUES(?,?,?,?,?,?,?,?)";
         $postStmt = $mysqli->prepare($postQuery);
         //bind paramaters
         $rc = $postStmt->bind_param('ssssssss', $prod_qty, $order_id, $order_code, $customer_id, $customer_name, $prod_id, $prod_name, $prod_price);
         $postStmt->execute();
         //declare a varible which will be passed to alert function
         if ($postStmt) {
-            $deductQuery = "UPDATE rpos_products SET quantity = quantity - ? WHERE prod_id = ?";
+            $deductQuery = "UPDATE fms_products SET quantity = quantity - ? WHERE prod_id = ?";
             $deductStmt = $mysqli->prepare($deductQuery);
             //bind parameters
             $rc = $deductStmt->bind_param('ss', $prod_qty, $prod_id);
@@ -78,7 +78,7 @@ require_once('partials/_head.php');
                                         <?php
                                         //Load All Customers
                                         $customer_id = $_SESSION['customer_id'];
-                                        $ret = "SELECT * FROM  rpos_customers WHERE customer_id = '$customer_id' ";
+                                        $ret = "SELECT * FROM  fms_customers WHERE customer_id = '$customer_id' ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();
@@ -96,7 +96,7 @@ require_once('partials/_head.php');
                                 <hr>
                                 <?php
                                 $prod_id = $_GET['prod_id'];
-                                $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
+                                $ret = "SELECT * FROM  fms_products WHERE prod_id = '$prod_id'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute();
                                 $res = $stmt->get_result();

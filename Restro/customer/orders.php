@@ -48,7 +48,7 @@ require_once('partials/_head.php');
                 </thead>
                 <tbody>
                   <?php
-                  $ret = "SELECT * FROM  rpos_products  ORDER BY `rpos_products`.`created_at` ASC ";
+                  $ret = "SELECT * FROM  fms_products  ORDER BY `fms_products`.`created_at` ASC ";
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();

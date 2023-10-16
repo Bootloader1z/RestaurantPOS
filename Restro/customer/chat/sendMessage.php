@@ -9,7 +9,7 @@ if($_POST)
 		
 			$customer_id = $_SESSION['customer_id'];
 			//$login_id = $_SESSION['login_id'];
-			$ret = "SELECT * FROM  rpos_customers  WHERE customer_id = '$customer_id'";
+			$ret = "SELECT * FROM  fms_customers  WHERE customer_id = '$customer_id'";
 			$stmt = $mysqli->prepare($ret);
 			$stmt->execute();
 			$res = $stmt->get_result();
@@ -36,7 +36,7 @@ if($_POST)
 		
 			$admin_id = $_SESSION['admin_id'];
 			//$login_id = $_SESSION['login_id'];
-			$ret = "SELECT * FROM  rpos_admin  WHERE admin_id = '$admin_id'";
+			$ret = "SELECT * FROM  fms_admin  WHERE admin_id = '$admin_id'";
 			$stmt = $mysqli->prepare($ret);
 			$stmt->execute();
 			$res = $stmt->get_result();
